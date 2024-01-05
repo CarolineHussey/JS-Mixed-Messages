@@ -21,3 +21,6 @@ Complete. Future work could include developing a gui such as html and css to dis
 Save ```main.js``` locally. 
 Navigate to the folder where it is saved in command line.
 Run ```node main.js``` from the command line. Repeat!
+
+## Attribution
+Thanks to Celandro at Pokébattler for providing the Rest API with Pokémon details.
