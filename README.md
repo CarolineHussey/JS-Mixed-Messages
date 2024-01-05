@@ -1,7 +1,7 @@
-# Random Pokemon Selector
+# Random Pokémon Selector
 
 ## Overview
-This app generates a message containing a random Pokemon, random eligible moveset and their base stats and typing. The output is a console log message with these details.
+This app generates a message containing a random Pokémon, random eligible moveset and their base stats and typing. The output is a console log message with these details.
 
 ## Project Objectives
 - Build a message generator program using JavaScript
