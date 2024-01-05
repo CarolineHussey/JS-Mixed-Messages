@@ -1,6 +1,7 @@
 // JavaScript source code
 const apiUrl = 'https://fight.pokebattler.com/pokemon';
 let randInd = Math.random();
+
 // Make a GET request
 fetch(apiUrl)
     .then(response => {
@@ -11,29 +12,28 @@ fetch(apiUrl)
     })
     .then(data => {
 
-        let selectPokemon = data.pokemon[Math.floor(randInd * data.pokemon.length)].pokemonId;
-        let selectFastMove = data.pokemon[Math.floor(randInd * data.pokemon.length)].quickMoves[Math.floor(Math.random() * data.pokemon[Math.floor(randInd * data.pokemon.length)].quickMoves.length)];
-        let selectChargeMove = data.pokemon[Math.floor(randInd * data.pokemon.length)].cinematicMoves[Math.floor(Math.random() * data.pokemon[Math.floor(randInd * data.pokemon.length)].cinematicMoves.length)];
+        let select = data.pokemon[Math.floor(randInd * data.pokemon.length)];
+        let selectPokemon = select.pokemonId;
+        let selectFastMove = select.quickMoves[Math.floor(Math.random() * select.quickMoves.length)];
+        let selectChargeMove = select.cinematicMoves[Math.floor(Math.random() * select.cinematicMoves.length)];
+        let baseAtt = select.stats.baseAttack;
+        let baseStamina = select.stats.baseStamina;
+        let baseDef = select.stats.baseDefense;
+        let type = '';
 
-        console.log(selectPokemon);
-        console.log(selectFastMove);
-        console.log(selectChargeMove);
-        /*for (let i = 0; i < data.pokemon.length; i++) {
-            console.log(Object.keys(data.pokemon[i].pokemonId));
-            if (data.pokemon[i].hasOwnProperty('type2')) {
-                console.log(`${data.pokemon[i].type} and ${data.pokemon[i].type2}`);
-            } else {
-                console.log(data.pokemon[i].type);
-            }
-            //console.log(Object.keys(data.pokemon[i]));
-            console.log(data.pokemon[i].quickMoves[0]);
-        //pick a random number to select a pokemonID at the given index
-        //pick quick move
-        //pick charge move
-        
-        }*/
+        if (select.hasOwnProperty('type2')) {
+            let rawFormat = select.type.split('_');
+            let returnValue1 = rawFormat[rawFormat.length - 1];
+            let rawFormat2 = select.type2.split('_');
+            let returnValue2 = rawFormat2[rawFormat2.length - 1];
+            type = `${returnValue1} and ${returnValue2}`;
+        } else {
+            let rawFormat = select.type.split('_');
+            let returnValue = rawFormat[rawFormat.length - 1];
+            type = returnValue;
+        }
 
-
+        console.log(`You choose ${selectPokemon}! ${selectPokemon} is of ${type} type and base stats are: Attack: ${baseAtt}, Defence: ${baseDef}, Stamina: ${baseStamina}. Your ${selectPokemon} has a fast move of ${selectFastMove} and charged move of ${selectChargeMove}. Good Luck!!`);
     })
     .catch(error => {
         console.error('Error:', error);
